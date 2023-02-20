@@ -48,7 +48,7 @@ class SegDataset(torch.utils.data.Dataset):
         box_df = pd.read_csv(f"data_c{cycle}.csv")
 
         data = []
-        test_thresh=10
+        test_thresh=0
         cnt=0
         for _, group in enumerate(groups):
           for i in range(0,len(group)):
@@ -67,7 +67,7 @@ class SegDataset(torch.utils.data.Dataset):
   
             boxes = np.array(boxes)
 
-            if (mode=='train' and cnt <= test_thresh) or (mode=='test' and cnt > test_thresh):
+            if (mode=='train' and cnt <= test_thresh) or (mode=='test' and cnt >= test_thresh):
               if (len(boxes) > 0):
                data.append((row['name'], row['label'], boxes))
           cnt+=1
