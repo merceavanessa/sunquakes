@@ -30,9 +30,7 @@ class SegDataset(torch.utils.data.Dataset):
             
         df = pd.DataFrame(data={'name': all_img_files, 'label' : all_labels})#, 'event': events})
 
-        ## TODO local
-        df[['useless1', 'useless2', 'part_of_quake','Year','month','day','Hour','Minute','Seconds','frame']] = df['name'].str.split('_', expand=True)
-        # df[['useless1','useless2', 'part_of_quake','Year','month','day','Hour','Minute','Seconds','frame']] = df['name'].str.split('_', expand=True)
+        df[['useless1', 'useless2', 'useless3', 'part_of_quake','Year','month','day','Hour','Minute','Seconds','frame']] = df['name'].str.split('_', expand=True)
     
         df['frame'] = df['frame'].str.extract('(\d+)', expand=False)
         df['frame']=df['frame'].astype(int)
