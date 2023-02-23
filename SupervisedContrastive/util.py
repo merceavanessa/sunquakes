@@ -14,7 +14,9 @@ class LowPassTransform(object):
         h, w = img.shape[0:2]#Getting image properties
         h1,w1 = int(h/2), int(w/2)#Find the center point of the Fourier spectrum
         img2 = np.zeros((h, w), np.uint8)#Define a blank black image with the same size as the Fourier Transform Transfer
-        img2[h1-int(size/2):h1+int(size/2), w1-int(size/2):w1+int(size/2)] = 1#Center point plus or minus half of the filter size, forming a filter size that defines the size, then set to 1, preserving the low frequency part
+        img2[h1-int(size/2):h1+int(size/2), w1-int(size/2):w1+int(size/2)] = 1
+        #Center point plus or minus half of the filter size,
+        # # forming the filter coordinates, then set pixels within filter to 1, preserving the low frequency part
         return img2*img #A low-pass filter is obtained by multiplying the defined low-pass filter with the incoming Fourier spectrogram one-to-one.
 
     def __call__(self, sample):
